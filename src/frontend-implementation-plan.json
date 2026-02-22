@@ -1,0 +1,67 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Fix Web Serial API permissions policy error",
+  "requirements": [
+    {
+      "id": "REQ-15",
+      "summary": "Add Permissions-Policy HTTP headers to allow Web Serial API access",
+      "acceptanceCriteria": [
+        "Permissions-Policy header includes 'serial=(self)' to allow serial access",
+        "The header is properly configured in the Internet Computer deployment",
+        "Web Serial API requestPort() no longer throws permissions policy errors"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/.ic-assets.json5",
+          "operation": "create",
+          "description": "Create Internet Computer asset configuration file to define HTTP headers including Permissions-Policy with 'serial=(self)' to allow Web Serial API access in the deployed application"
+        }
+      ]
+    },
+    {
+      "id": "REQ-16",
+      "summary": "Enhance error handling in useWebSerial hook for permissions and compatibility errors",
+      "acceptanceCriteria": [
+        "Permissions policy errors show a clear message explaining the HTTPS requirement",
+        "Browser compatibility errors explain that Chromium-based browsers are required",
+        "Error messages provide actionable guidance for users to resolve the issue",
+        "Errors are displayed in the ConnectionPanel UI with appropriate styling"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useWebSerial.ts",
+          "operation": "modify",
+          "description": "Add comprehensive error detection and user-friendly error messages for Web Serial API failures including permissions policy errors (with HTTPS guidance), browser compatibility errors (Chromium requirement), and other access failures. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/ConnectionPanel.tsx",
+          "operation": "modify",
+          "description": "Update error display to show detailed, user-friendly error messages from useWebSerial hook with appropriate styling, including specific guidance for permissions policy and browser compatibility issues"
+        }
+      ]
+    },
+    {
+      "id": "REQ-17",
+      "summary": "Add secure context validation to prevent Web Serial API access over HTTP",
+      "acceptanceCriteria": [
+        "Check window.isSecureContext before calling navigator.serial.requestPort()",
+        "Display a clear warning message if accessed over HTTP instead of HTTPS",
+        "Warning explains that Web Serial API requires HTTPS",
+        "Connection attempts are prevented when not in a secure context"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useWebSerial.ts",
+          "operation": "modify",
+          "description": "Add window.isSecureContext validation before attempting Web Serial API access, set error state with clear HTTPS requirement message when accessed over HTTP, and prevent connection attempts in non-secure contexts"
+        },
+        {
+          "path": "frontend/src/components/ConnectionPanel.tsx",
+          "operation": "modify",
+          "description": "Display secure context warning message prominently when the application is accessed over HTTP, with clear explanation that Web Serial API requires HTTPS and guidance for users"
+        }
+      ]
+    }
+  ]
+}

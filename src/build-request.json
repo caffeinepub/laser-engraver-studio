@@ -1,0 +1,73 @@
+{
+  "kind": "build_request",
+  "title": "Fix Web Serial API permissions policy error",
+  "projectName": "Laser Engraver Control",
+  "priority": "high",
+  "requirements": [
+    {
+      "id": "REQ-15",
+      "text": "Add Permissions-Policy HTTP headers to the frontend deployment configuration to explicitly allow the 'serial' feature, ensuring the Web Serial API can be accessed without browser permissions policy errors",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ],
+        "quotes": [
+          "Failed to execute 'requestPort' on 'Serial': Access to the feature \"serial\" is disallowed by permissions policy"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Permissions-Policy header includes 'serial=(self)' to allow serial access",
+        "The header is properly configured in the Internet Computer deployment",
+        "Web Serial API requestPort() no longer throws permissions policy errors"
+      ]
+    },
+    {
+      "id": "REQ-16",
+      "text": "Enhance error handling in useWebSerial hook to detect and display user-friendly error messages when Web Serial API access is blocked, including guidance about HTTPS requirement and browser compatibility",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-5",
+          "msg-6"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Permissions policy errors show a clear message explaining the HTTPS requirement",
+        "Browser compatibility errors explain that Chromium-based browsers are required",
+        "Error messages provide actionable guidance for users to resolve the issue",
+        "Errors are displayed in the ConnectionPanel UI with appropriate styling"
+      ]
+    },
+    {
+      "id": "REQ-17",
+      "text": "Add secure context validation in useWebSerial hook to check if the application is running over HTTPS before attempting Web Serial API access, and display a warning if accessed over HTTP",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Check window.isSecureContext before calling navigator.serial.requestPort()",
+        "Display a clear warning message if accessed over HTTP instead of HTTPS",
+        "Warning explains that Web Serial API requires HTTPS",
+        "Connection attempts are prevented when not in a secure context"
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify the core Web Serial API communication logic in useWebSerial.ts beyond error handling improvements",
+    "Ensure all error messages are clear and user-friendly, avoiding technical jargon",
+    "Permissions-Policy headers must be configured at the Internet Computer deployment level"
+  ],
+  "nonGoals": [
+    "Adding support for non-Chromium browsers",
+    "Implementing alternative connection methods beyond Web Serial API",
+    "Creating a local HTTP server workaround for testing"
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

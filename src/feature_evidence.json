@@ -1,0 +1,61 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-add-permissions-policy-http-headers-to-the-frontend-deployment-configuration-to-explicitly-allow-the-serial-feature-ensuring-the-web-serial-api-can-be-accessed-without-browser-permissions-policy-errors",
+      "featureTitle": "Add Permissions-Policy HTTP headers to the frontend deployment configuration to explicitly allow the 'serial' feature, ensuring the Web Serial API can be accessed without browser permissions policy errors",
+      "files": [
+        "frontend/.ic-assets.json5"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-15"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-enhance-error-handling-in-usewebserial-hook-to-detect-and-display-user-friendly-error-messages-when-web-serial-api-access-is-blocked-including-guidance-about-https-requirement-and-browser-compatibility",
+      "featureTitle": "Enhance error handling in useWebSerial hook to detect and display user-friendly error messages when Web Serial API access is blocked, including guidance about HTTPS requirement and browser compatibility",
+      "files": [
+        "frontend/src/components/ConnectionPanel.tsx",
+        "frontend/src/hooks/useWebSerial.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-16"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-secure-context-validation-in-usewebserial-hook-to-check-if-the-application-is-running-over-https-before-attempting-web-serial-api-access-and-display-a-warning-if-accessed-over-http",
+      "featureTitle": "Add secure context validation in useWebSerial hook to check if the application is running over HTTPS before attempting Web Serial API access, and display a warning if accessed over HTTP",
+      "files": [
+        "frontend/src/components/ConnectionPanel.tsx",
+        "frontend/src/hooks/useWebSerial.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-17"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

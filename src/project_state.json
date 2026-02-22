@@ -1,0 +1,230 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 5,
+  "summary": "Laser engraving control application similar to LaserGBRL for Wizmaker Wand Mini 2.5W laser engraver, featuring Web Serial API connectivity, image-to-G-code conversion (line scanning and vector/contour tracing), adjustable parameters (laser power, speed, resolution), manual jog controls with auto-centering, homing commands, work origin setting, G-code file upload, and command history with progress tracking",
+  "architectural_notes": [
+    "Frontend-only application using Web Serial API for direct USB connection to laser engraver",
+    "React + TypeScript with Tailwind CSS for UI",
+    "Browser-based image processing for G-code generation",
+    "Progress tracking based on command sending with serial response monitoring (no WebSocket support)",
+    "Target device: Wizmaker Wand Mini 2.5W laser engraver",
+    "Permissions-Policy headers required to allow Web Serial API access",
+    "Secure context (HTTPS) mandatory for Web Serial API functionality"
+  ],
+  "known_issues": [
+    "Real-time position feedback limited to Web Serial API responses - no WebSocket-based live telemetry available",
+    "Progress tracking based on commands sent rather than true device position updates",
+    "Permissions policy error when accessing Web Serial API - requires proper headers and HTTPS"
+  ],
+  "isFixRequest": true,
+  "existing_features": [
+    {
+      "id": "feature-implement-web-serial-api-integration-to-connect-to-wizmaker-wand-mini-2-5w-laser-engraver-via-usb-including-connection-disconnection-controls-and-serial-port-selection",
+      "title": "Implement Web Serial API integration to connect to Wizmaker Wand Mini 2.5W laser engraver via USB, including connection/disconnection controls and serial port selection",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-image-upload-functionality-that-accepts-bitmap-images-jpg-png-for-conversion-to-g-code",
+      "title": "Create image upload functionality that accepts bitmap images (JPG, PNG) for conversion to G-code",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-line-by-line-scanning-g-code-generation-algorithm-that-converts-bitmap-images-to-g-code-commands-for-the-wizmaker-wand-mini",
+      "title": "Implement line-by-line scanning G-code generation algorithm that converts bitmap images to G-code commands for the Wizmaker Wand Mini",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-vector-contour-tracing-g-code-generation-algorithm-that-converts-images-to-outline-based-engraving-paths",
+      "title": "Implement vector/contour tracing G-code generation algorithm that converts images to outline-based engraving paths",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-adjustable-parameter-controls-for-laser-power-intensity-engraving-speed-and-resolution-with-real-time-preview-of-how-settings-affect-g-code-generation",
+      "title": "Create adjustable parameter controls for laser power intensity, engraving speed, and resolution with real-time preview of how settings affect G-code generation",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-manual-jog-controls-with-directional-buttons-for-x-and-y-axis-movement-including-adjustable-jog-distance-settings",
+      "title": "Implement manual jog controls with directional buttons for X and Y axis movement, including adjustable jog distance settings",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-auto-centering-functionality-that-calculates-and-moves-the-laser-head-to-the-center-position-of-the-work-area",
+      "title": "Implement auto-centering functionality that calculates and moves the laser head to the center position of the work area",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-homing-commands-functionality-that-sends-the-laser-head-to-home-position-origin",
+      "title": "Implement homing commands functionality that sends the laser head to home position (origin)",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-work-origin-setting-capability-that-allows-users-to-set-the-current-position-as-the-work-coordinate-origin",
+      "title": "Implement work origin setting capability that allows users to set the current position as the work coordinate origin",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-g-code-file-upload-functionality-that-allows-users-to-upload-pre-made-g-code-files-for-sending-to-the-laser-engraver",
+      "title": "Create G-code file upload functionality that allows users to upload pre-made G-code files for sending to the laser engraver",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-command-history-display-that-shows-all-g-code-commands-sent-to-the-laser-engraver-with-timestamps",
+      "title": "Implement command history display that shows all G-code commands sent to the laser engraver with timestamps",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-job-progress-tracking-interface-that-displays-engraving-progress-based-on-commands-sent-via-web-serial-api-including-current-line-number-percentage-complete-and-estimated-time-remaining",
+      "title": "Implement job progress tracking interface that displays engraving progress based on commands sent via Web Serial API, including current line number, percentage complete, and estimated time remaining",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-serial-response-monitoring-that-captures-and-displays-responses-from-the-laser-engraver-received-via-web-serial-api",
+      "title": "Implement serial response monitoring that captures and displays responses from the laser engraver received via Web Serial API",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-design-and-implement-a-professional-industrial-themed-ui-with-a-dark-color-scheme-suitable-for-precision-laser-engraving-control-featuring-clear-visual-hierarchy-for-safety-critical-controls-and-real-time-monitoring-displays",
+      "title": "Design and implement a professional, industrial-themed UI with a dark color scheme suitable for precision laser engraving control, featuring clear visual hierarchy for safety-critical controls and real-time monitoring displays",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-permissions-policy-http-headers-to-the-frontend-deployment-configuration-to-explicitly-allow-the-serial-feature-ensuring-the-web-serial-api-can-be-accessed-without-browser-permissions-policy-errors",
+      "title": "Add Permissions-Policy HTTP headers to the frontend deployment configuration to explicitly allow the 'serial' feature, ensuring the Web Serial API can be accessed without browser permissions policy errors",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-enhance-error-handling-in-usewebserial-hook-to-detect-and-display-user-friendly-error-messages-when-web-serial-api-access-is-blocked-including-guidance-about-https-requirement-and-browser-compatibility",
+      "title": "Enhance error handling in useWebSerial hook to detect and display user-friendly error messages when Web Serial API access is blocked, including guidance about HTTPS requirement and browser compatibility",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-secure-context-validation-in-usewebserial-hook-to-check-if-the-application-is-running-over-https-before-attempting-web-serial-api-access-and-display-a-warning-if-accessed-over-http",
+      "title": "Add secure context validation in useWebSerial hook to check if the application is running over HTTPS before attempting Web Serial API access, and display a warning if accessed over HTTP",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Web Serial API connection to Wizmaker Wand Mini via USB",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Image-to-G-code conversion with line scanning method",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Image-to-G-code conversion with vector/contour tracing method",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Adjustable parameters: laser power intensity, engraving speed, and resolution",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Manual jog controls for X/Y axes movement",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Auto-centering capability for laser head positioning",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Homing commands functionality",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Work origin setting capability",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "G-code file upload capability",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Command history display and tracking",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Job progress tracking interface via Web Serial API",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Laser Engraver Studio",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}
